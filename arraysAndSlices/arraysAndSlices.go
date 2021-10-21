@@ -11,3 +11,11 @@ func Sum(numbers []int) int {
 	}
 	return sum
 }
+
+func SumAll(arraysToSum ...[]int) (nums []int) {
+	for _, arr := range arraysToSum {
+		result := Sum(arr)
+		nums = append(nums, result)
+	}
+	return
+}
