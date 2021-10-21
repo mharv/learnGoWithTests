@@ -12,10 +12,14 @@ func Sum(numbers []int) int {
 	return sum
 }
 
-func SumAll(arraysToSum ...[]int) (nums []int) {
-	for _, arr := range arraysToSum {
-		result := Sum(arr)
-		nums = append(nums, result)
+func SumAll(arraysToSum ...[]int) []int {
+
+	lengthOfArrays := len(arraysToSum)
+	sums := make([]int, lengthOfArrays)
+
+	for i, arr := range arraysToSum {
+		sums[i] = Sum(arr)
 	}
-	return
+
+	return sums
 }
