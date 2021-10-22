@@ -17,8 +17,13 @@ func SumAllTails(arraysToSum ...[]int) []int {
 	var sums []int
 
 	for _, arr := range arraysToSum {
-		tail := arr[1:]
-		sums = append(sums, Sum(tail))
+		if len(arr) >= 2 {
+			tail := arr[1:]
+			sums = append(sums, Sum(tail))
+		} else {
+			sums = append(sums, 0)
+		}
+
 	}
 
 	return sums
