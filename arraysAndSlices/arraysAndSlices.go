@@ -12,12 +12,13 @@ func Sum(numbers []int) int {
 	return sum
 }
 
-func SumAll(arraysToSum ...[]int) []int {
+func SumAllTails(arraysToSum ...[]int) []int {
 
 	var sums []int
 
 	for _, arr := range arraysToSum {
-		sums = append(sums, Sum(arr))
+		tail := arr[1:]
+		sums = append(sums, Sum(tail))
 	}
 
 	return sums
