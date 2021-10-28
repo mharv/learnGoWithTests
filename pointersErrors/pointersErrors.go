@@ -1,8 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
+
+	var A Wallet
+	A.Deposit(10)
+	A.Withdraw(11)
+	fmt.Println(A.balance.String())
 
 }
 
@@ -16,8 +24,14 @@ type Wallet struct {
 	balance Bitcoin
 }
 
-func (w *Wallet) Withdraw(amount Bitcoin) {
+func (w *Wallet) Withdraw(amount Bitcoin) error {
+
+	if amount > w.balance {
+		return errors.New("uh oh")
+	}
+
 	w.balance -= amount
+	return nil
 }
 
 func (w *Wallet) Deposit(amount Bitcoin) {
