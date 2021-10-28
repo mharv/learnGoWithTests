@@ -27,7 +27,7 @@ type Wallet struct {
 func (w *Wallet) Withdraw(amount Bitcoin) error {
 
 	if amount > w.balance {
-		return errors.New("uh oh")
+		return errors.New("cannot withdraw, insufficient funds")
 	}
 
 	w.balance -= amount
