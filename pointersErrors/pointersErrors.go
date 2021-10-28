@@ -7,10 +7,10 @@ import (
 
 func main() {
 
-	var A Wallet
-	A.Deposit(10)
-	A.Withdraw(11)
-	fmt.Println(A.balance.String())
+	// var A Wallet
+	// A.Deposit(10)
+	// A.Withdraw(11)
+	// fmt.Println(A.balance.String())
 
 }
 
