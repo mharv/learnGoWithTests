@@ -12,6 +12,7 @@ func main() {
 type Dictionary map[string]string
 
 var ErrNotFound = errors.New("could not find the word you were looking for")
+var ErrWordExists = errors.New("cannot add word because it already exists")
 
 func (d Dictionary) Search(key string) (string, error) {
 
@@ -23,6 +24,11 @@ func (d Dictionary) Search(key string) (string, error) {
 	return definition, nil
 }
 
-func (d Dictionary) Add(key, word string) {
-	d[key] = word
+func (d Dictionary) Add(key, word string) error {
+	if d[key] == "" {
+		d[key] = word
+	} else {
+		return ErrWordExists
+	}
+	return nil
 }
