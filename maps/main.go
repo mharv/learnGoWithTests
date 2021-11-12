@@ -25,10 +25,15 @@ func (d Dictionary) Search(key string) (string, error) {
 }
 
 func (d Dictionary) Add(key, word string) error {
-	if d[key] == "" {
+	_, err := d.Search(key)
+
+	switch err {
+	case ErrNotFound:
 		d[key] = word
-	} else {
+	case nil:
 		return ErrWordExists
+	default:
+		return err
 	}
 	return nil
 }
