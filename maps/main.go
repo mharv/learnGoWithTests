@@ -21,9 +21,9 @@ func (e DictionaryErr) Error() string {
 
 type Dictionary map[string]string
 
-func (d Dictionary) Search(key string) (string, error) {
+func (d Dictionary) Search(word string) (string, error) {
 
-	definition, ok := d[key]
+	definition, ok := d[word]
 	if !ok {
 		return "", ErrNotFound
 	}
@@ -31,16 +31,22 @@ func (d Dictionary) Search(key string) (string, error) {
 	return definition, nil
 }
 
-func (d Dictionary) Add(key, word string) error {
-	_, err := d.Search(key)
+func (d Dictionary) Add(word, definition string) error {
+	_, err := d.Search(word)
 
 	switch err {
 	case ErrNotFound:
-		d[key] = word
+		d[word] = definition
 	case nil:
 		return ErrWordExists
 	default:
 		return err
 	}
 	return nil
+}
+
+func (d Dictionary) Update(word, definition string) error {
+	d[word] = definition
+	return nil
+
 }
